@@ -1,25 +1,55 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Directory from './components/Directory';
 
 class App extends Component {
+
+  state = {
+    expandDirectories: false,
+    directories: [1, 2, 3],
+  }
+
+  showDirectories = () => {
+    const { directories } = this.state;
+
+    return (
+      <ul>
+        {directories.map((num) => {
+          return (
+            <li key={num} >
+              <Directory numDirectory={num} />
+            </li>
+          )
+        })}
+      </ul>
+    )
+  }
+
+  handleClickMainDir = () => {
+    const { expandDirectories } = this.state;
+
+    if (!expandDirectories) {
+      this.setState({
+        expandDirectories: true,
+      })
+    } else {
+      this.setState({
+        expandDirectories: false,
+      })
+    }
+  }
+
+  showFiles = () => {
+
+  }
+
   render() {
+    const { expandDirectories } = this.state;
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <button onClick={this.handleClickMainDir} ><h1>Main Directory</h1></button>
+        { expandDirectories ? this.showDirectories() : '' }
       </div>
     );
   }
