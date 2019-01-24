@@ -8,11 +8,11 @@ class File extends Component {
     return (
       <div>
         <div>
-          <button onClick={closePreview} >Close</button>
+          <button className="close-file-btn" onClick={closePreview} >Close</button>
         </div>
-        <div>
-          <h2>{file.title}</h2>
-          <p>{file.content}</p>
+        <div className="file" >
+          <h2 className="file-title" >{file.title}</h2>
+          <p className="file-text" >{file.content}</p>
         </div>
       </div>
     );

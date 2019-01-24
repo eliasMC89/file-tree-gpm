@@ -8,9 +8,9 @@ class Directory extends Component {
   }
 
   componentDidMount () {
-    const { numDirectory } = this.props;
+    const { nameDirectory } = this.props;
 
-    const dirFiles = this.getDirFiles(numDirectory);
+    const dirFiles = this.getDirFiles(nameDirectory);
 
     this.setState({
       dirFiles,
@@ -38,10 +38,10 @@ class Directory extends Component {
       <ul>
         {dirFiles.map((file) => {
           return(
-            <li key={file.id} >
-              <button onClick={() => {
+            <li key={file.id} className="files-list">
+              <button className="file-btn" onClick={() => {
                 clickFile(file);
-              }} ><p>{file.title}</p></button>
+              }} ><span className="file-name">{file.title}</span></button>
             </li>
           )
         })}
@@ -64,12 +64,12 @@ class Directory extends Component {
   }
 
   render() {
-    const { numDirectory } = this.props;
+    const { nameDirectory } = this.props;
     const { expandFiles } = this.state;
 
     return (
       <div>
-        <button onClick={this.handleClickDir} ><h3>Directory { numDirectory }</h3></button>
+        <button onClick={this.handleClickDir} className="directory" ><h3><img src={require('../images/folder.png')} alt="dir" className="dir-img"/><span className="dir-name">{ nameDirectory }</span></h3></button>
         { expandFiles ? this.showFiles() : ''}
       </div>
     );

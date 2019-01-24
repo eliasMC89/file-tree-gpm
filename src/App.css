@@ -1,0 +1,62 @@
+.App {
+  display: flex;
+  margin: 20px;
+}
+
+.main-dir {
+  border-radius: 10px;
+  padding: 0px 20px;
+  background-color: #F9F9F9;
+}
+
+.dir-list {
+  list-style: none;
+}
+
+.dir-name {
+  font-size: 16px;
+  padding-left: 10px;
+}
+
+.directory {
+  padding: 0px 20px;
+  border-radius: 10px;
+  margin: 10px 0px;
+}
+
+.files-list {
+  list-style: none;
+}
+
+.file-btn {
+  margin-bottom: 10px;
+  width: 100px;
+  border-radius: 5px;
+}
+
+.file-name {
+  font-size: 15px;
+}
+
+.file {
+  border: 1px solid black;
+  padding: 15px;
+  text-align: center;
+  height: 800px;
+  width: 560px;
+  margin-left: 50px;
+}
+
+.file-title {
+  text-align: center;
+  font-size: 28px;
+}
+
+.file-text {
+  text-align: justify;
+}
+
+.close-file-btn {
+  margin-left: 50px;
+  margin-bottom: 5px;
+}

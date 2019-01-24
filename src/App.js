@@ -9,7 +9,7 @@ class App extends Component {
   state = {
     files: [],
     expandDirectories: false,
-    directories: [1, 2, 3],
+    directories: ['Docs', 'Downloads', 'Others'],
     isFilePreview: false,
     currentFile: '',
   }
@@ -28,10 +28,10 @@ class App extends Component {
 
     return (
       <ul>
-        {directories.map((num) => {
+        {directories.map((name) => {
           return (
-            <li key={num} >
-              <Directory numDirectory={num} clickFile={this.previewFile} files={files} />
+            <li key={name} className="dir-list">
+              <Directory nameDirectory={name} clickFile={this.previewFile} files={files} />
             </li>
           )
         })}
@@ -80,9 +80,9 @@ class App extends Component {
     const { expandDirectories, isFilePreview, currentFile } = this.state;
 
     return (
-      <div>
-        <div className="App">
-          <button onClick={this.handleClickMainDir} ><h1>Main Directory</h1></button>
+      <div className="App">
+        <div>
+          <button className="main-dir" onClick={this.handleClickMainDir} ><h1>Main</h1></button>
           { expandDirectories ? this.showDirectories() : '' }
         </div>
         <div>
