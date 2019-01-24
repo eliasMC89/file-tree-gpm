@@ -12,6 +12,7 @@ class App extends Component {
     directories: ['Docs', 'Downloads', 'Others'],
     isFilePreview: false,
     currentFile: '',
+    hasError: false,
   }
 
   componentDidMount () {
@@ -19,6 +20,11 @@ class App extends Component {
       .then((files) => {
         this.setState({
           files,
+        })
+      })
+      .catch(() => {
+        this.setState({
+          hasError: true,
         })
       })
   }
@@ -78,7 +84,11 @@ class App extends Component {
   }
 
   render() {
-    const { expandDirectories, isFilePreview, currentFile } = this.state;
+    const { expandDirectories, isFilePreview, currentFile, hasError } = this.state;
+
+    if (hasError) {
+       return <h1 className="error-msg" >Something went wrong!</h1>
+    }
 
     return (
       <div className="App">
