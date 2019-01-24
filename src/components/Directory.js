@@ -31,13 +31,16 @@ class Directory extends Component {
 
   showFiles = () => {
     const { dirFiles } = this.state;
+    const { clickFile } = this.props;
 
     return (
       <ul>
         {dirFiles.map((file) => {
           return(
-            <li key={file.name} >
-              <p>{file.name}</p>
+            <li key={file.title} >
+              <button onClick={() => {
+                clickFile(file);
+              }} ><p>{file.title}</p></button>
             </li>
           )
         })}
