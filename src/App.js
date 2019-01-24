@@ -59,6 +59,12 @@ class App extends Component {
 
   }
 
+  closePreview = () => {
+    this.setState({
+      isFilePreview: false,
+    })
+  }
+
   render() {
     const { expandDirectories, isFilePreview, currentFile } = this.state;
 
@@ -69,7 +75,7 @@ class App extends Component {
           { expandDirectories ? this.showDirectories() : '' }
         </div>
         <div>
-          { isFilePreview ? <File file={currentFile} /> : '' }
+          { isFilePreview ? <File file={currentFile} closePreview={this.closePreview} /> : '' }
         </div>
       </div>
     );

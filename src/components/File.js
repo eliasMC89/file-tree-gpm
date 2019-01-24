@@ -3,12 +3,17 @@ import React, { Component } from 'react';
 class File extends Component {
 
   render() {
-    const { file } = this.props;
+    const { file, closePreview } = this.props;
 
     return (
       <div>
-        <h2>{file.title}</h2>
-        <p>{file.content}</p>
+        <div>
+          <button onClick={closePreview} >Close</button>
+        </div>
+        <div>
+          <h2>{file.title}</h2>
+          <p>{file.content}</p>
+        </div>
       </div>
     );
   }

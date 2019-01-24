@@ -1,30 +1,36 @@
 import React, { Component } from 'react';
-import { files } from '../data/files';
+// import { files } from '../data/files';
+import filesService from '../data/files/filesService';
 
 class Directory extends Component {
 
   state = {
+    files: '',
     dirFiles: [],
     expandFiles: false,
   }
 
   componentDidMount () {
+    const { numDirectory } = this.props;
 
-    const dirFiles = this.getFiles(this.props.numDirectory);
+    const dirFiles = this.getDirFiles(numDirectory);
 
     this.setState({
       dirFiles,
     })
   }
 
-  getFiles = (dir) => {
+  getDirFiles = (dir) => {
     const dirFiles = [];
 
-    files.forEach((file) => {
-      if (file.directory === dir) {
-        dirFiles.push(file);
-      }
-    })
+    filesService.getFiles()
+      .then((files) => {
+        files.forEach((file) => {
+          if (file.directory === dir) {
+            dirFiles.push(file);
+          }
+        })
+      })
 
     return dirFiles;
   }
@@ -37,7 +43,7 @@ class Directory extends Component {
       <ul>
         {dirFiles.map((file) => {
           return(
-            <li key={file.title} >
+            <li key={file.id} >
               <button onClick={() => {
                 clickFile(file);
               }} ><p>{file.title}</p></button>
