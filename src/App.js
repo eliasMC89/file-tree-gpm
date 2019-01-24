@@ -49,6 +49,7 @@ class App extends Component {
     } else {
       this.setState({
         expandDirectories: false,
+        isFilePreview: false,
       })
     }
   }
