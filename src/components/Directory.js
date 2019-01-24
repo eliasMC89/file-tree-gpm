@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-// import { files } from '../data/files';
-import filesService from '../data/files/filesService';
 
 class Directory extends Component {
 
   state = {
-    files: '',
     dirFiles: [],
     expandFiles: false,
   }
@@ -22,15 +19,13 @@ class Directory extends Component {
 
   getDirFiles = (dir) => {
     const dirFiles = [];
+    const { files } = this.props;
 
-    filesService.getFiles()
-      .then((files) => {
-        files.forEach((file) => {
-          if (file.directory === dir) {
-            dirFiles.push(file);
-          }
-        })
-      })
+    files.forEach((file) => {
+      if (file.directory === dir) {
+        dirFiles.push(file);
+      }
+    });
 
     return dirFiles;
   }

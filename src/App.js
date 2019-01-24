@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import filesService from './data/files/filesService';
 import './App.css';
 import Directory from './components/Directory';
 import File from './components/File';
@@ -6,21 +7,31 @@ import File from './components/File';
 class App extends Component {
 
   state = {
+    files: [],
     expandDirectories: false,
     directories: [1, 2, 3],
     isFilePreview: false,
     currentFile: '',
   }
 
+  componentDidMount () {
+    filesService.getFiles()
+      .then((files) => {
+        this.setState({
+          files,
+        })
+      })
+  }
+
   showDirectories = () => {
-    const { directories } = this.state;
+    const { directories, files } = this.state;
 
     return (
       <ul>
         {directories.map((num) => {
           return (
             <li key={num} >
-              <Directory numDirectory={num} clickFile={this.previewFile} />
+              <Directory numDirectory={num} clickFile={this.previewFile} files={files} />
             </li>
           )
         })}
