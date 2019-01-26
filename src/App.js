@@ -13,6 +13,7 @@ class App extends Component {
     isFilePreview: false,
     currentFile: '',
     hasError: false,
+    isLoading: true,
   }
 
   componentDidMount () {
@@ -20,11 +21,13 @@ class App extends Component {
       .then((files) => {
         this.setState({
           files,
+          isLoading: false,
         })
       })
       .catch(() => {
         this.setState({
           hasError: true,
+          isLoading: false,
         })
       })
   }
@@ -84,10 +87,13 @@ class App extends Component {
   }
 
   render() {
-    const { expandDirectories, isFilePreview, currentFile, hasError } = this.state;
+    const { expandDirectories, isFilePreview, currentFile, hasError, isLoading } = this.state;
 
     if (hasError) {
-       return <h1 className="error-msg" >Something went wrong!</h1>
+       return <h1 className="message" >Something went wrong!</h1>
+    }
+    if (isLoading) {
+      return <h1 className="message" >Loading...</h1>
     }
 
     return (
